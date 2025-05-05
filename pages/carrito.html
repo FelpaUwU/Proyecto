@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Bolsa de Compras</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles-carrito.css">
+</head>
+
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <div class="contenedor-carrito">
+        <div class="productos-carrito">
+            <h1>Mi Bolsa de Compras</h1>
+            <div id="carrito-contenido">
+                <!-- Productos aquí -->
+            </div>
+        </div>
+
+        <div id="resumen-compra" class="resumen-carrito">
+            <h2>Resumen de mi compra</h2>
+            <div id="resumen-detalles"></div>
+
+            <div class="zona-envio">
+                <label for="zona-envio"><strong>Zona de envío:</strong></label>
+                <select id="zona-envio" onchange="actualizarCostoEnvio()" class="form-control">
+                    <option value="">Seleccione su ciudad</option>
+                    <option value="Bogotá">Bogotá</option>
+                    <option value="Medellín">Medellín</option>
+                    <option value="Cali">Cali</option>
+                    <option value="Barranquilla">Barranquilla</option>
+                    <option value="Otras ciudades">Otras ciudades</option>
+                </select>
+
+                <div id="costo-envio" style="margin-top: 10px;"></div>
+            </div>
+
+            <div class="info-envio-devolucion">
+                <h3>Información de envío y devoluciones</h3>
+                <ul>
+                    <li>🚚 Entregas estimadas entre <strong>3 y 5 días hábiles</strong> para ciudades principales.</li>
+                    <li>🚛 Para zonas rurales, el tiempo de entrega puede ser de hasta <strong>7 días hábiles</strong>.</li>
+                    <li>🔁 Puedes solicitar la devolución o cambio de un producto hasta <strong>15 días</strong> después de recibirlo.</li>
+                    <li>💳 Los reembolsos se procesarán en un máximo de <strong>7 días hábiles</strong> después de la aprobación.</li>
+                </ul>
+            </div>
+
+            <button onclick="pagarConStripe()" class="btn-finalizar">Finalizar compra</button>
+            <button onclick="vaciarCarrito()" class="btn-vaciar">Vaciar carrito</button>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        © 2025 Mi Tienda - Todos los derechos reservados
+    </footer>
+
+    <script src="../js/toast.js"></script>
+    <script src="../js/carrito.js"></script>
+    <script src="../js/buscar.js"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let rutaNavbar = '../components/navbar.html';
+
+            fetch(rutaNavbar)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                    actualizarContadorCarrito(); 
+                    prepararBuscador();
+                })
+                .catch(error => console.error('Error cargando navbar:', error));
+        });
+    </script>
+
+    <div id="toast" class="toast"></div>
+    <script src="https://js.stripe.com/v3/"></script>
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Administrar Productos</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles-admin.css">
+</head>
+
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+
+        <h1 style="display:flex; justify-content: space-between; align-items: center;">
+            Productos
+            <button class="btn-form" onclick="abrirModal()">+ Agregar Producto</button>
+        </h1>
+
+        <div style="overflow-x:auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Categoría</th>
+                        <th>Cantidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-productos">
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div id="modal-producto" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <h2 id="form-title">Agregar Nuevo Producto</h2>
+    
+            <form id="form-producto">
+                <input type="hidden" id="producto-id">
+    
+                <input type="text" id="nombre" class="form-control" placeholder="Nombre del producto" required>
+                <textarea id="descripcion" class="form-control" placeholder="Descripción" required></textarea>
+                <input type="number" id="precio" class="form-control" placeholder="Precio" required>
+    
+                <select id="tipo_producto_id" class="form-control" required>
+                    <option value="">Seleccione una categoría</option>
+                </select>
+    
+                <input type="file" id="imagen" class="form-control" accept="image/*">
+    
+                <img id="preview-imagen" src="" alt="Vista previa" style="max-width: 100px; margin-top: 10px; display: none;">
+    
+                <input type="number" id="cantidad" class="form-control" placeholder="Cantidad disponible" required min="0">
+    
+                <button type="submit" id="btn-guardar" class="btn-form">Guardar Producto</button>
+            </form>
+        </div>
+    </div>
+    
+
+    <footer class="footer">
+        © 2025 Mi Tienda - Todos los derechos reservados
+    </footer>
+
+    <div id="modal-confirmar" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <h3 id="confirmar-titulo">¿Confirmar acción?</h3>
+            <p id="confirmar-mensaje">¿Estás seguro de que deseas realizar esta acción?</p>
+            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <button id="btn-cancelar" class="btn-form" style="background-color: gray;">Cancelar</button>
+                <button id="btn-confirmar" class="btn-form" style="background-color: red;">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/toast.js"></script>
+    <script src="../js/admin_productos.js"></script>
+    <script src="../js/buscar.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let rutaNavbar = '../components/navbar.html';
+
+            fetch(rutaNavbar)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                    activarLinkActual();
+                    prepararBuscador();
+                    actualizarContadorCarrito();
+                })
+
+                .catch(error => console.error('Error cargando navbar:', error));
+        });
+
+        function activarLinkActual() {
+            const links = document.querySelectorAll('.navbar-links a');
+            const currentPath = window.location.pathname.split('/').pop(); 
+
+            links.forEach(link => {
+                if (link.getAttribute('href').includes(currentPath)) {
+                    link.classList.add('activo');
+                }
+            });
+        }
+    </script>
+
+
+    <div id="toast" class="toast"></div>
+</body>
+
+</html>

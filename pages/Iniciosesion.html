@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esplendor - Inicio de sesión</title>
+    <link rel="icon" href="imagenes/Logos/logoh.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: url(imagenes/fondois.png) no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="PaginaPrincipal.html">
+                    <img src="imagenes/Logos/logo.jpg" alt="Esplendor" style="height: 40px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="d-flex justify-content-center align-items-center vh-100">
+        <div class="static-container"> <!-- Contenedor sin efectos -->
+            <h5 class="text-center text-warning fs-4">INICIO DE SESIÓN</h5>
+            <form id="formLogin">
+                <div class="mb-3">
+                    <label for="usuario" class="form-label fs-6">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario" required>
+                </div>
+                <div class="mb-3">
+                    <label for="contraseña" class="form-label fs-6">Contraseña</label>
+                    <input type="password" class="form-control" id="contraseña" placeholder="Ingrese su contraseña" required>
+                </div>
+                <div class="mb-3 d-flex justify-content-between">
+                    <a href="#" class="text-warning">¿Olvidaste tu contraseña?</a>
+                </div>
+                <button type="submit" class="btn btn-warning w-100 fs-6 py-2">Iniciar sesión</button>
+            </form>
+            <p class="text-center mt-3">¿No tienes cuenta? <a href="register.html" class="text-warning">Crear cuenta</a></p>
+        </div>
+    </main>
+
+    <footer class="bg-light text-dark py-4 mt-4">
+        <div class="container text-center">
+            <p>📞 3124567674 | 📧 almacendeplateria@hotmail.com</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script para manejar el inicio de sesión -->
+    <script>
+        document.getElementById("formLogin").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevenir el envío del formulario de forma tradicional
+
+            // Obtener los valores del formulario
+            const usuario = document.getElementById("usuario").value;
+            const contraseña = document.getElementById("contraseña").value;
+
+            // Validación básica
+            if (usuario && contraseña) {
+                console.log("Datos de inicio de sesión:", { usuario, contraseña });
+
+                // Simulamos el inicio de sesión exitoso con un mensaje
+                alert("¡Inicio de sesión exitoso! Bienvenido.");
+            } else {
+                alert("Por favor, ingresa ambos campos.");
+            }
+        });
+    </script>
+</body>
+</html>
+
+

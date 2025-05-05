@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - Mi Tienda</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <h1>Todos los Productos</h1>
+        <div id="contenedor-productos" class="product-grid">
+            <!-- Los productos se cargarán dinámicamente aquí -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        © 2025 Mi Tienda - Todos los derechos reservados
+    </footer>
+
+    <script src="js/toast.js"></script>
+    <script src="js/producto.js"></script>
+    <script src="js/buscar.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let rutaNavbar = 'components/navbar.html';
+
+            fetch(rutaNavbar)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                    actualizarContadorCarrito(); 
+                })
+                .then(() => {
+
+                    cargarProductos();
+                    prepararBuscador();
+                })
+                .catch(error => console.error('Error cargando navbar:', error));
+                cargarProductosEnMemoria();
+        });
+
+    </script>
+
+
+    
+    <div id="toast" class="toast"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            actualizarContadorCarrito();
+        });
+    </script>
+
+
+</body>
+
+</html>

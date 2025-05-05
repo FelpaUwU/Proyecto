@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esplendor - Inicio de Sesión Administrador</title>
+    <link rel="icon" href="imagenes/Logos/logoh.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="imagenes/Logos/logo.jpg" alt="Esplendor" style="height: 40px;">
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="d-flex justify-content-center align-items-center vh-100">
+        <div class="static-container">
+            <h5 class="text-center text-warning fs-4">INICIO DE SESIÓN ADMINISTRADOR</h5>
+            <form id="login-form">
+                <div class="mb-3">
+                    <label for="usuario" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario" required>
+                </div>
+                <div class="mb-3">
+                    <label for="contraseña" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="contraseña" placeholder="Ingrese su contraseña" required>
+                </div>
+                <div id="error-message" class="text-danger d-none mb-3">Usuario o contraseña incorrectos</div>
+                <button type="submit" class="btn btn-warning w-100 fs-6 py-2">Iniciar sesión</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="bg-light text-dark py-4 mt-4">
+        <div class="container text-center">
+            <p>📞 3124567674 | 📧 almacendeplateria@hotmail.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Validación del formulario de inicio de sesión
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();  // Evita que el formulario se envíe de la forma tradicional
+
+            const usuario = document.getElementById('usuario').value;
+            const contraseña = document.getElementById('contraseña').value;
+
+            // Credenciales correctas
+            const usuarioCorrecto = "Sofiajefa";
+            const contraseñaCorrecta = "lider";
+
+            if (usuario === usuarioCorrecto && contraseña === contraseñaCorrecta) {
+                // Redirige al panel de administración (Dashboard)
+                window.location.href = "administradoragregareditar.html";  // Redirige al panel del administrador
+            } else {
+                // Muestra el mensaje de error si las credenciales no son correctas
+                document.getElementById('error-message').classList.remove('d-none');
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
